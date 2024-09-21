@@ -49,9 +49,9 @@ public class Polynomial  {
 		int len=poly.length;
 		double evaluation=poly[len-1];
 		
-		for(int i=0;i<len;i++) {
-			evaluation=evaluation*x+poly[len-1-i];
-			}
+		for(int i=len-2;i>=0;i--) {
+			evaluation=evaluation*x+poly[i];
+		}
 		return evaluation;
 	}
 	
