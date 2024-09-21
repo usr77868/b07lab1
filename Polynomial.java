@@ -18,42 +18,40 @@ public class Polynomial  {
 	public Polynomial add(Polynomial arg) {
 		int polylen=poly.length;
 		int arglen=arg.poly.length;
-				
-		if(polylen<arglen) {
-			double[] result=new double[arglen];
-			for(int i=0; i<polylen; i++) {
-				result[i]=poly[i]+arg.poly[i];
-			}
-			for(int i=polylen;i<arglen;i++) {
-				result[i]=arg.poly[i];
-			}
-			Polynomial polyres=new Polynomial(result);
-			return polyres;
-		}
-
-		else {
+		
+		if(polylen>arglen) {
 			double[] result=new double[polylen];
-			for(int i=0; i<arglen; i++) {
-				result[i]=poly[i]+arg.poly[i];
+			for(int i=0;i<arglen;i++) {
+			result[i]=poly[i]+arg.poly[i];
 			}
-			for(int i=arglen;i<polylen;i++) {
+			for(int i=arglen; i<polylen;i++) {
 				result[i]=poly[i];
 			}
-			Polynomial polyres=new Polynomial(result);
-			return polyres;
+			Polynomial res=new Polynomial(result);
+			return res;
 		}
-	}
+		
+		else {
+			double[] result=new double[arglen];
+			for(int i=0;i<polylen;i++) {
+			result[i]=poly[i]+arg.poly[i];
+			}
+			for(int i=polylen; i<arglen;i++) {
+				result[i]=arg.poly[i];
+			}
+			Polynomial res=new Polynomial(result);
+			return res;
+		}
+    }
+
 	
 	public double evaluate(double x) {
 		int len=poly.length;
-		double evaluation=0;
+		double evaluation=poly[len-1];
 		
 		for(int i=0;i<len;i++) {
-			if(i<len-1) {
-				evaluation*=x;
+			evaluation=evaluation*x+poly[len-1-i];
 			}
-			evaluation=evaluation+poly[i]*x;
-		}
 		return evaluation;
 	}
 	
